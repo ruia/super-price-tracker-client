@@ -1,0 +1,55 @@
+<h3>Add new product</h3>
+<form [formGroup]="form" (submit)="createProduct()">
+    <div class="row g-3 mb-3">
+        <div class="col">
+            <label class="visually-hidden" for="autoSizingInput">Product</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Product" autofocus>
+        </div>
+        <div class="col">
+            <label class="visually-hidden" for="autoSizingInputGroup">Price</label>
+            <input type="text" class="form-control" id="price" formControlName="price" placeholder="Price">
+        </div>
+    </div>
+    <div class="row g-3 mb-3">
+        <div class="col">
+            <label class="visually-hidden" for="autoSizingSelect">Supermarket</label>
+            <select class="form-select" id="autoSizingSelect">
+                <option selected>Select Supermarket...</option>
+            </select>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" [disabled]="form.invalid">Add</button>
+        </div>
+    </div>
+</form>
+
+<hr>
+
+<h3>Products List</h3>
+<table datatable id="products-list" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Supermarket</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.id_supermarket}}</td>
+            <td>
+                <a (click)="deleteProduct(product.id)" style="cursor:pointer" class="text-decoration-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+                    </svg>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
